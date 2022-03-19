@@ -72,7 +72,24 @@ const getStock = async (req, res) => {
     res.status(200).json(response.rows);
  };
  
+ const getStockById = async (req, res) => {
+    const response = await pool.query('SELECT * FROM users WHERE id = $1', [req.params.id]);
+    res.json(response.rows); 
+}
 
+const createStock = async (req, res) => {
+    const { marcaid, tipoporducto, descripcion, codigo, cantidad, precio } = req.body;
+
+    const response = await pool.query('INSERT INTO stock (marcaid, tipoproducto, descripcion, codigo, cantidad, precio) VALUES ($1, $2, $3, $4, $5, $6)',
+     [marcaid, tipoporducto, descripcion, codigo, cantidad, precio]);
+    console.log(response);
+    res.json({
+        message: 'Stock Added Succesfully',
+        body: {
+            user: {marcaid, tipoporducto, descripcion, codigo, cantidad, precio}
+        }
+    })
+};
 
 
 module.exports = {
@@ -80,5 +97,9 @@ module.exports = {
     getUserById,
     createUser,
     deleteUser,
-    login
+    login,
+    getStock,
+    getStockById,
+    createStock
+
 }
