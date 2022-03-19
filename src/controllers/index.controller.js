@@ -20,6 +20,7 @@ const pool = new Pool({
       }
 });
 
+//CRUD USERS
 
 const getUsers = async (req, res) => {
    const response = await pool.query('SELECT * FROM users');
@@ -33,26 +34,51 @@ const getUserById = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    const { name, email } = req.body;
+    const { name, email, password } = req.body;
 
-    const response = await pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email]);
+    const response = await pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3)', [name, email, password]);
     console.log(response);
     res.json({
         message: 'User Added Succesfully',
         body: {
-            user: {name, email}
+            user: {name, email, password}
         }
     })
 };
+
+const login = async (req, res) => {
+    const {email, password} = req.body;
+
+    const response = await pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
+    console.log(response);
+    if(response.rowCount != 0){
+        res.status(200).json('Ok');
+    }
+    else{
+        res.json(`Error`);
+    }
+}
 
 const deleteUser = async (req, res) => {
     const response = await pool.query('DELETE FROM users WHERE id = $1', [req.params.id]);
     res.json(`User ${req.params.id} deleted successfully`);
 };
 
+//CRUD STOCK  https://art-trash.herokuapp.com/login
+
+const getStock = async (req, res) => {
+    const response = await pool.query('SELECT * FROM stock');
+    console.log(response.rows);
+    res.status(200).json(response.rows);
+ };
+ 
+
+
+
 module.exports = {
     getUsers,
     getUserById,
     createUser,
-    deleteUser
+    deleteUser,
+    login
 }
