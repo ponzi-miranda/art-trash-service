@@ -84,7 +84,7 @@ const getStockById = async (req, res) => {
 };
 
 const getStockByMarcaId = async (req, res) => {
-    const response = await pool.query('SELECT * FROM users WHERE marcaid = $1', [req.params.id]);
+    const response = await pool.query('SELECT * FROM stock WHERE marcaid = $1', [req.params.id]);
     res.json(response.rows); 
 };
 

@@ -12,7 +12,7 @@ router.post('/login', login);
 router.delete('/users/:id', deleteUser);
 router.get('/stock', getStock);
 router.get('/stock/:id', getStockById);
-router.get('/stock/tipoProducto', getTipoProducto);
+router.get('/tipoProducto', getTipoProducto);
 router.post('/stock', createStock);
 router.get('/stock/marca/:id', getStockByMarcaId)
 
