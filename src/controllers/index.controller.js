@@ -66,27 +66,38 @@ const deleteUser = async (req, res) => {
 
 //CRUD STOCK  https://art-trash.herokuapp.com/login
 
+const getTipoProducto = async (req, res) => {
+    const response = await pool.query('SELECT * FROM tipoproducto');
+    console.log(response.rows);
+    res.status(200).json(response.rows);
+};
+
 const getStock = async (req, res) => {
     const response = await pool.query('SELECT * FROM stock');
     console.log(response.rows);
     res.status(200).json(response.rows);
- };
+};
  
- const getStockById = async (req, res) => {
+const getStockById = async (req, res) => {
     const response = await pool.query('SELECT * FROM users WHERE id = $1', [req.params.id]);
     res.json(response.rows); 
-}
+};
+
+const getStockByMarcaId = async (req, res) => {
+    const response = await pool.query('SELECT * FROM users WHERE marcaid = $1', [req.params.id]);
+    res.json(response.rows); 
+};
+
 
 const createStock = async (req, res) => {
-    const { marcaid, tipoporducto, descripcion, codigo, cantidad, precio } = req.body;
+    const { marcaid, idtipoproducto, descripcion, codigo, cantidad, precio } = req.body;
 
-    const response = await pool.query('INSERT INTO stock (marcaid, tipoproducto, descripcion, codigo, cantidad, precio) VALUES ($1, $2, $3, $4, $5, $6)',
-     [marcaid, tipoporducto, descripcion, codigo, cantidad, precio]);
+    const response = await pool.query('INSERT INTO stock (marcaid, idtipoproducto, descripcion, codigo, cantidad, precio) VALUES ($1, $2, $3, $4, $5, $6)', [marcaid, idtipoproducto, descripcion, codigo, cantidad, precio]);
     console.log(response);
     res.json({
         message: 'Stock Added Succesfully',
         body: {
-            user: {marcaid, tipoporducto, descripcion, codigo, cantidad, precio}
+            stock: {marcaid, idtipoporducto, descripcion, codigo, cantidad, precio}
         }
     })
 };
@@ -100,6 +111,7 @@ module.exports = {
     login,
     getStock,
     getStockById,
-    createStock
-
+    createStock,
+    getStockByMarcaId,
+    getTipoProducto
 }
