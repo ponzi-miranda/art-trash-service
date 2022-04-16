@@ -20,32 +20,6 @@ const pool = new Pool({
       }
 });
 
-//CRUD USERS
-
-const getUsers = async (req, res) => {
-   const response = await pool.query('SELECT * FROM users');
-   console.log(response.rows);
-   res.status(200).json(response.rows);
-};
-
-const getUserById = async (req, res) => {
-    const response = await pool.query('SELECT * FROM users WHERE id = $1', [req.params.id]);
-    res.json(response.rows); 
-}
-
-const createUser = async (req, res) => {
-    const { name, email, password } = req.body;
-
-    const response = await pool.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3)', [name, email, password]);
-    console.log(response);
-    res.json({
-        message: 'User Added Succesfully',
-        body: {
-            user: {name, email, password}
-        }
-    })
-};
-
 const login = async (req, res) => {
     const {email, password} = req.body;
 
@@ -58,11 +32,6 @@ const login = async (req, res) => {
         res.json(`Error`);
     }
 }
-
-const deleteUser = async (req, res) => {
-    const response = await pool.query('DELETE FROM users WHERE id = $1', [req.params.id]);
-    res.json(`User ${req.params.id} deleted successfully`);
-};
 
 //CRUD STOCK  https://art-trash.herokuapp.com/login
 
@@ -104,10 +73,7 @@ const createStock = async (req, res) => {
 
 
 module.exports = {
-    getUsers,
-    getUserById,
-    createUser,
-    deleteUser,
+
     login,
     getStock,
     getStockById,
