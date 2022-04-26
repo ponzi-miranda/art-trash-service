@@ -4,7 +4,7 @@ const router = Router();
 const {login} = require('../controllers/index.controller');
 const {getStock, getStockById, createStock, getTipoProducto, getStockByMarcaId } = require('../controllers/stock.controller');
 const{getUsers, createUser, getUserById, deleteUser, updateUser} = require('../controllers/users.controller');
-const{getProductById, getProductsByBrandId, createProduct, updateProduct, deleteProduct} = require('../controllers/products.controller');
+const{getProductById, getProductsByBrandId, createProduct, updateProduct, deleteProduct, getProductTypes} = require('../controllers/products.controller');
 
 router.get('/users', getUsers);
 router.get('/users/:id', getUserById);
@@ -22,5 +22,6 @@ router.get('/products/brand/:id', getProductsByBrandId);
 router.post('/products', createProduct);
 router.put('/products/:id', updateProduct);
 router.delete('/products/:id', deleteProduct);
+router.get('/product/types', getProductTypes);
 
 module.exports = router;

@@ -27,6 +27,12 @@ const getProductById = async (req, res) => {
     res.json(response.rows); 
 };
 
+const getProductTypes = async (req, res) => {
+    const response = await pool.query('SELECT * FROM product_type');
+    console.log(response.rows);
+    res.status(200).json(response.rows);
+ };
+
 const getProductsByBrandId = async (req, res) => {
     const response = await pool.query('SELECT * FROM products WHERE brand_id = $1', [req.params.id]);
     res.json(response.rows); 
@@ -69,5 +75,6 @@ module.exports = {
     getProductById,
     getProductsByBrandId,
     deleteProduct,
-    updateProduct
+    updateProduct,
+    getProductTypes
 }
