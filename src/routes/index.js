@@ -9,7 +9,7 @@ const{getProductById, getProductsByBrandId, createProduct, updateProduct, delete
 router.get('/users', getUsers);
 router.get('/users/:id', getUserById);
 router.post('/users', createUser);
-router.get('/login', login);
+router.post('/login', login);
 router.delete('/users/:id', deleteUser);
 router.put('/users/:id', updateUser);
 router.get('/stock', getStock);
