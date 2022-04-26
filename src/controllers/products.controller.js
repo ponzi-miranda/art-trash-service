@@ -56,15 +56,17 @@ const updateProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
     const { serial_number, description, product_type_id, price, brand_id } = req.body;
-
-    const response = await pool.query('INSERT INTO products (serial_number, description, product_type_id, price, brand_id) VALUES ($1, $2, $3, $4, $5)', [
+    const response = await pool.query('INSERT INTO products (serial_number, description, product_type_id, price, brand_id) VALUES ($1, $2, $3, $4, $5) RETURNING id', [
         serial_number, description, product_type_id, price, brand_id
     ]);
     console.log(response);
+    var id = response.rows;
+
     res.json({
         message: 'Product Added Succesfully',
         body: {
-            product: {serial_number, description, product_type_id, price, brand_id}
+            product: {serial_number, description, product_type_id, price, brand_id, id},
+            
         }
     })
 };
