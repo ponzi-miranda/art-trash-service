@@ -26,7 +26,7 @@ const login = async (req, res) => {
     const response = await pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
     console.log(response);
     if(response.rowCount != 0){
-        res.status(200).json('Ok');
+        res.status(200).json(response.rows[0].id);
     }
     else{
         res.json(`Error`);
