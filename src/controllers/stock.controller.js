@@ -45,6 +45,12 @@ const getStockByMarcaId = async (req, res) => {
     res.json(response.rows); 
 };
 
+const getStockByBrandId = async (req, res) => {
+    const response = await pool.query('select s.id, product_id, p.description, pt.description , quantity, p.price from stock s join products p on s.product_id = p.id join product_type pt on p.product_type_id = pt.id where s.brand_id = $1',
+    [req.params.id]);
+    res.json(response.rows); 
+};
+
 
 const createStock = async (req, res) => {
         const { brand_id, product_id, quantity } = req.body;
@@ -68,5 +74,6 @@ module.exports = {
     getStockById,
     createStock,
     getStockByMarcaId,
-    getTipoProducto
+    getTipoProducto,
+    getStockByBrandId
 }

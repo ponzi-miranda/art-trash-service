@@ -2,7 +2,7 @@ const {Router} = require('express');
 const router = Router();
 
 const {login} = require('../controllers/index.controller');
-const {getStock, getStockById, createStock, getTipoProducto, getStockByMarcaId } = require('../controllers/stock.controller');
+const {getStock, getStockById, createStock, getTipoProducto, getStockByMarcaId, getStockByBrandId } = require('../controllers/stock.controller');
 const{getUsers, createUser, getUserById, deleteUser, updateUser} = require('../controllers/users.controller');
 const{getProductById, getProductsByBrandId, createProduct, updateProduct, deleteProduct, getProductTypes} = require('../controllers/products.controller');
 
@@ -17,6 +17,7 @@ router.get('/stock/:id', getStockById);
 router.get('/tipoProducto', getTipoProducto);
 router.post('/stock', createStock);
 router.get('/stock/marca/:id', getStockByMarcaId);
+router.get('/stock/brand/:id', getStockByBrandId);
 router.get('/products/:id', getProductById);
 router.get('/products/brand/:id', getProductsByBrandId);
 router.post('/products', createProduct);
