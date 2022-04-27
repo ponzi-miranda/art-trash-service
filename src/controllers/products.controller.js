@@ -60,7 +60,7 @@ const createProduct = async (req, res) => {
         serial_number, description, product_type_id, price, brand_id
     ]);
     console.log(response);
-    var id = response.rows;
+    var id = response.rows[0].id;
 
     res.json({
         message: 'Product Added Succesfully',
@@ -70,7 +70,6 @@ const createProduct = async (req, res) => {
         }
     })
 };
-
 
 module.exports = {
     createProduct,
