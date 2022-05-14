@@ -6,6 +6,8 @@ const {getStock, getStockById, createStock, getTipoProducto, getStockByMarcaId, 
 const{getUsers, createUser, getUserById, deleteUser, updateUser} = require('../controllers/users.controller');
 const{getProductById, getProductsByBrandId, createProduct, updateProduct, deleteProduct, getProductTypes} = require('../controllers/products.controller');
 const{getSaleById, getSalesByBrandId, createSale, getSalesByEventId, getSalesViewByEventId, getSales} = require('../controllers/sales.controller');
+const{createEvent} = require('../controllers/events.controller');
+
 
 router.get('/users', getUsers);
 router.get('/users/:id', getUserById);
@@ -31,5 +33,6 @@ router.post('/sales', createSale);
 router.get('/sales', getSales);
 router.get('/sales/event/id', getSalesByEventId);
 router.get('/salesEvent/:id', getSalesViewByEventId);
+router.post('/event', createEvent);
 
 module.exports = router;
