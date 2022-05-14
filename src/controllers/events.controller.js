@@ -28,11 +28,11 @@ const pool = new Pool({
 //     res.status(200).json(response.rows);
 // };
 
-// const getStock = async (req, res) => {
-//     const response = await pool.query('SELECT * FROM stock');
-//     console.log(response.rows);
-//     res.status(200).json(response.rows);
-// };
+const getEvents = async (req, res) => {
+    const response = await pool.query('SELECT * FROM events');
+    console.log(response.rows);
+    res.status(200).json(response.rows);
+};
  
 // const getStockById = async (req, res) => {
 //     const response = await pool.query('SELECT * FROM stock WHERE id = $1', [req.params.id]);
@@ -73,6 +73,6 @@ module.exports = {
     // getStockByMarcaId,
     // getTipoProducto,
     // getStockByBrandId,
-    // getStock,  
+    getEvents,  
     // getStockById,
 }
