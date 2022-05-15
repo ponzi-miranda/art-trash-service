@@ -51,6 +51,16 @@ const getStockByBrandId = async (req, res) => {
     res.json(response.rows); 
 };
 
+const updateStock = async (req, res) => {
+    const{id} = req.params;
+    const{product_id} = req.body;
+
+    const response = await pool.query('update stock set quantity = $1 where product_id = $2',
+        [product_id, id]
+    );
+
+    return res.json(response.rows[0])
+}
 
 const createStock = async (req, res) => {
         const { brand_id, product_id, quantity } = req.body;
@@ -75,5 +85,6 @@ module.exports = {
     createStock,
     getStockByMarcaId,
     getTipoProducto,
-    getStockByBrandId
+    getStockByBrandId,
+    updateStock
 }
