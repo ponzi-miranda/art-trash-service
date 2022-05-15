@@ -53,10 +53,10 @@ const getStockByBrandId = async (req, res) => {
 
 const updateStock = async (req, res) => {
     const{id} = req.params;
-    const{product_id} = req.body;
+    const{quantity} = req.body;
 
     const response = await pool.query('update stock set quantity = $1 where product_id = $2',
-        [product_id, id]
+        [quantity, id]
     );
 
     return res.json(response.rows[0])
