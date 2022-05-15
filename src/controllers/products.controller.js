@@ -28,7 +28,7 @@ const getProductById = async (req, res) => {
 };
 
 const getProductDataById = async (req, res) => {
-    const response = await pool.query('SELECT description, product_type_id, price, quantity FROM products p join stock s  on p.id  = s.product_id WHERE p.id = $1', [req.params.id]);
+    const response = await pool.query('SELECT description, product_type_id, serial_number, price, quantity FROM products p join stock s  on p.id  = s.product_id WHERE p.id = $1', [req.params.id]);
     res.json(response.rows); 
 };
 
