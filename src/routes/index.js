@@ -4,7 +4,7 @@ const router = Router();
 const {login} = require('../controllers/index.controller');
 const {getStock, getStockById, createStock, getTipoProducto, getStockByMarcaId, getStockByBrandId } = require('../controllers/stock.controller');
 const{getUsers, createUser, getUserById, deleteUser, updateUser} = require('../controllers/users.controller');
-const{getProductById, getProductsByBrandId, createProduct, updateProduct, deleteProduct, getProductTypes} = require('../controllers/products.controller');
+const{getProductById,getProductDataById, getProductsByBrandId, createProduct, updateProduct, deleteProduct, getProductTypes} = require('../controllers/products.controller');
 const{getSaleById, getSalesByBrandId, createSale, getSalesByEventId, getSalesViewByEventId, getSales} = require('../controllers/sales.controller');
 const{createEvent, getEvents} = require('../controllers/events.controller');
 
@@ -35,5 +35,7 @@ router.get('/sales/event/id', getSalesByEventId);
 router.get('/salesEvent/:id', getSalesViewByEventId);
 router.post('/event', createEvent);
 router.get('/events', getEvents);
+router.get('/products/data/:id', getProductDataById);
+
 
 module.exports = router;
