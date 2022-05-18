@@ -34,10 +34,10 @@ const getEvents = async (req, res) => {
     res.status(200).json(response.rows);
 };
  
-// const getStockById = async (req, res) => {
-//     const response = await pool.query('SELECT * FROM stock WHERE id = $1', [req.params.id]);
-//     res.json(response.rows); 
-// };
+const getEventById = async (req, res) => {
+    const response = await pool.query('SELECT * FROM events WHERE id = $1', [req.params.id]);
+    res.json(response.rows); 
+};
 
 // const getStockByMarcaId = async (req, res) => {
 //     const response = await pool.query('SELECT * FROM stock WHERE brand_id = $1', [req.params.id]);
@@ -66,13 +66,23 @@ const createEvent = async (req, res) => {
         })   
 };
 
+const updateEvent = async (req, res) => {
+    const{id} = req.params;
+    const{name, inscription, start_date, finish_date} = req.body;
+
+    const response = await pool.query('UPDATE events SET name = $1, inscription = $2, start_date = $3, finish_date = $4 WHERE id = $5',
+        [name, inscription, start_date, finish_date, id]
+    );
+
+    return res.json(response.rows)
+}
 
 module.exports = {
 
     createEvent,
     // getStockByMarcaId,
-    // getTipoProducto,
+    updateEvent,
     // getStockByBrandId,
     getEvents,  
-    // getStockById,
+    getEventById
 }

@@ -6,8 +6,7 @@ const {getStock, getStockById, createStock, getTipoProducto, getStockByMarcaId, 
 const{getUsers, createUser, getUserById, deleteUser, updateUser} = require('../controllers/users.controller');
 const{getProductById,getProductDataById, getProductsByBrandId, createProduct, updateProduct, deleteProduct, getProductTypes} = require('../controllers/products.controller');
 const{getSaleById, getSalesByBrandId, createSale, getSalesByEventId, getSalesViewByEventId, getSales} = require('../controllers/sales.controller');
-const{createEvent, getEvents} = require('../controllers/events.controller');
-
+const{createEvent, getEvents, updateEvent, getEventById} = require('../controllers/events.controller');
 
 router.get('/users', getUsers);
 router.get('/users/:id', getUserById);
@@ -35,7 +34,9 @@ router.get('/sales', getSales);
 router.get('/sales/event/id', getSalesByEventId);
 router.get('/salesEvent/:id', getSalesViewByEventId);
 router.post('/event', createEvent);
+router.put('/event/:id', updateEvent);
 router.get('/events', getEvents);
+router.get('/event/:id', getEventById);
 router.get('/products/data/:id', getProductDataById);
 
 

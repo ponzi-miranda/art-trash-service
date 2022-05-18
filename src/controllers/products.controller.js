@@ -56,7 +56,7 @@ const updateProduct = async (req, res) => {
         [serial_number, description, product_type_id, price, brand_id, id]
     );
 
-    return res.json(response.rows[0])
+    return res.json(response.rows)
 }
 
 const createProduct = async (req, res) => {
